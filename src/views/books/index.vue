@@ -18,6 +18,13 @@
           {{ scope.row.name }}
         </template>
       </el-table-column>
+      <el-table-column label="Name">
+        <template slot-scope="{ row }">
+          <router-link :to="'/books/' + row._id" class="link-type">
+            <span>Open the book</span>
+          </router-link>
+        </template>
+      </el-table-column>
     </el-table>
   </div>
 </template>

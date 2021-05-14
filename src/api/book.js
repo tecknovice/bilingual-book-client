@@ -8,6 +8,22 @@ export function getList(params) {
   });
 }
 
+export function getBook(id) {
+  return request({
+    url: `/book/${id}`,
+    method: 'get',
+  });
+}
+
+export function addChapter(bookId, chapterId) {
+  const data = { bookId, chapterId };
+  return request({
+    url: `/book/chapter`,
+    method: 'put',
+    data,
+  });
+}
+
 export function createBook(data) {
   return request({
     url: '/book',

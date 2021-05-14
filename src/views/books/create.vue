@@ -4,18 +4,6 @@
       <el-form-item label="Name">
         <el-input v-model="form.name" />
       </el-form-item>
-      <el-row :gutter="20">
-        <el-col :span="12">
-          <el-form-item label="Content">
-            <el-input v-model="form.content" :rows="20" type="textarea" />
-          </el-form-item>
-        </el-col>
-        <el-col :span="12">
-          <el-form-item label="Nội dung">
-            <el-input v-model="form.translated" :rows="20" type="textarea" />
-          </el-form-item>
-        </el-col>
-      </el-row>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">Create</el-button>
         <el-button @click="onCancel">Cancel</el-button>
@@ -31,8 +19,6 @@ export default {
     return {
       form: {
         name: '',
-        content: '',
-        translated: '',
       },
     };
   },
@@ -41,6 +27,7 @@ export default {
       const res = await createBook(this.form);
       console.log('res', res);
       // this.$message('submit!');
+      this.$router.push('/books');
     },
     onCancel() {
       this.$message({

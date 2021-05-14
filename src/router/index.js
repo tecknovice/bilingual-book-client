@@ -60,29 +60,57 @@ export const constantRoutes = [
   {
     path: '/books',
     component: Layout,
+    name: 'books',
+    meta: { title: 'books', icon: 'form' },
     children: [
       {
         path: 'index',
         name: 'ListBook',
-        component: () => import('@/views/table/index'),
+        component: () => import('@/views/books/index'),
         meta: { title: 'List books', icon: 'table' },
+      },
+      {
+        path: 'create',
+        name: 'CreateBook',
+        component: () => import('@/views/books/create'),
+        meta: { title: 'Create book', icon: 'form' },
+      },
+      {
+        path: ':id',
+        name: 'Update book',
+        component: () => import('@/views/books/update'),
+        meta: { title: 'Update book', icon: 'table' },
       },
     ],
   },
 
   {
-    path: '/books/create',
+    path: '/chapters',
     component: Layout,
+    name: 'chapters',
+    meta: { title: 'chapters', icon: 'form' },
+    hidden: true,
     children: [
       {
         path: 'index',
-        name: 'CreateBook',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Create book', icon: 'form' },
+        name: 'ListChapters',
+        component: () => import('@/views/chapters/index'),
+        meta: { title: 'List chapters', icon: 'table' },
+      },
+      {
+        path: 'create/:bookId',
+        name: 'CreateChapter',
+        component: () => import('@/views/chapters/create'),
+        meta: { title: 'Create chapter', icon: 'form' },
+      },
+      {
+        path: 'update/:id',
+        name: 'Update chapter',
+        component: () => import('@/views/chapters/update'),
+        meta: { title: 'Update chapter', icon: 'table' },
       },
     ],
   },
-
   {
     path: 'code',
     component: Layout,
