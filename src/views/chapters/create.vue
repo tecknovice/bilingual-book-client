@@ -7,12 +7,12 @@
       <el-row :gutter="20">
         <el-col :span="12">
           <el-form-item label="Content">
-            <el-input v-model="form.content" :rows="20" type="textarea" />
+            <tinymce v-model="form.content" :height="300" />
           </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label="Nội dung">
-            <el-input v-model="form.translated" :rows="20" type="textarea" />
+            <tinymce v-model="form.translated" :height="300" />
           </el-form-item>
         </el-col>
       </el-row>
@@ -25,9 +25,11 @@
 </template>
 
 <script>
+import Tinymce from '@/components/Tinymce';
 import { addChapter } from '@/api/book';
 import { createChapter } from '@/api/chapter';
 export default {
+  components: { Tinymce },
   data() {
     return {
       form: {
