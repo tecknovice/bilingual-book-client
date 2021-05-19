@@ -104,6 +104,12 @@ export const constantRoutes = [
         meta: { title: 'Create chapter', icon: 'form' },
       },
       {
+        path: 'read/:id',
+        name: 'Read chapter',
+        component: () => import('@/views/chapters/read'),
+        meta: { title: 'Read chapter', icon: 'table' },
+      },
+      {
         path: 'update/:id',
         name: 'Update chapter',
         component: () => import('@/views/chapters/update'),

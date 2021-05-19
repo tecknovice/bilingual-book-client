@@ -20,7 +20,7 @@
       </el-table-column>
       <el-table-column label="Link">
         <template slot-scope="{ row }">
-          <router-link :to="'/chapters/update/' + row._id" class="link-type">
+          <router-link :to="'/chapters/read/' + row._id" class="link-type">
             <span>Read the chapter</span>
           </router-link>
         </template>

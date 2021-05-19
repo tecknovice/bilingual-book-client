@@ -1,29 +1,16 @@
 <template>
   <div class="app-container">
-    <el-table
-      v-loading="loading"
-      :data="chapter.paragraphs"
-      element-loading-text="Loading"
-      border
-      fit
-      highlight-current-row
+    <el-row
+      ><h3>{{ chapter.name }}</h3></el-row
     >
-      <el-table-column align="center" label="ID" width="95">
-        <template slot-scope="scope">
-          {{ scope.$index }}
-        </template>
-      </el-table-column>
-      <el-table-column label="content">
-        <template slot-scope="scope">
-          {{ scope.row.content }}
-        </template>
-      </el-table-column>
-      <el-table-column label="translated">
-        <template slot-scope="scope">
-          {{ scope.row.translated }}
-        </template>
-      </el-table-column>
-    </el-table>
+    <el-row :gutter="20">
+      <el-col :span="12">
+        <div v-html="chapter.content"></div>
+      </el-col>
+      <el-col :span="12">
+        <div v-html="chapter.translated"></div>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
