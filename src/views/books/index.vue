@@ -10,7 +10,7 @@
     >
       <el-table-column align="center" label="ID" width="95">
         <template slot-scope="scope">
-          {{ scope.$index }}
+          {{ scope.$index + 1 }}
         </template>
       </el-table-column>
       <el-table-column label="Name">
@@ -18,11 +18,14 @@
           {{ scope.row.name }}
         </template>
       </el-table-column>
-      <el-table-column label="Name">
+      <el-table-column label="Actions" align="center" width="230">
         <template slot-scope="{ row }">
           <router-link :to="'/books/' + row._id" class="link-type">
-            <span>Open the book</span>
+            <el-button size="mini" type="primary">Open</el-button>
           </router-link>
+          <el-button size="mini" type="danger" @click="deleteBook(row._id)">
+            Delete
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -30,7 +33,7 @@
 </template>
 
 <script>
-import { getList } from '@/api/book';
+import { getList, deleteBook } from '@/api/book';
 
 export default {
   filters: {
@@ -60,6 +63,16 @@ export default {
         this.listLoading = false;
       });
     },
+
+    async deleteBook(bookId) {
+      const response = await deleteBook(bookId);
+    },
   },
 };
 </script>
+<style scoped>
+.cell {
+  display: flex;
+  justify-content: space-around;
+}
+</style>

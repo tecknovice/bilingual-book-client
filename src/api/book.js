@@ -31,3 +31,10 @@ export function createBook(data) {
     data,
   });
 }
+
+export function deleteBook(id) {
+  return request({
+    url: `/book/${id}`,
+    method: 'delete',
+  });
+}

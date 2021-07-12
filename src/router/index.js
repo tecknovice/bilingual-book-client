@@ -60,6 +60,7 @@ export const constantRoutes = [
   {
     path: '/books',
     component: Layout,
+    redirect: '/books/index',
     name: 'books',
     meta: { title: 'books', icon: 'form' },
     children: [
@@ -77,7 +78,8 @@ export const constantRoutes = [
       },
       {
         path: ':id',
-        name: 'Update book',
+        name: 'Updatebook',
+        hidden: true,
         component: () => import('@/views/books/update'),
         meta: { title: 'Update book', icon: 'table' },
       },

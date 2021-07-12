@@ -18,11 +18,14 @@
           {{ scope.row.name }}
         </template>
       </el-table-column>
-      <el-table-column label="Link">
+      <el-table-column label="Actions">
         <template slot-scope="{ row }">
           <router-link :to="'/chapters/read/' + row._id" class="link-type">
-            <span>Read the chapter</span>
+            <el-button size="mini" type="primary">Read</el-button>
           </router-link>
+          <el-button size="mini" type="danger" @click="deleteChapter(row._id)"
+            >Delete</el-button
+          >
         </template>
       </el-table-column>
     </el-table>
@@ -50,7 +53,7 @@ export default {
   },
   data() {
     return {
-      book: null,
+      book: {},
       loading: true,
       id: 0,
     };
@@ -69,6 +72,9 @@ export default {
     },
     createChapter() {
       this.$router.push('/chapter/create/' + this.id);
+    },
+    async deleteChapter(chapterId) {
+      const response = await deleteChapter(chapterId);
     },
   },
 };

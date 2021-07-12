@@ -20,7 +20,7 @@ import { getChapter } from '@/api/chapter';
 export default {
   data() {
     return {
-      chapter: null,
+      chapter: {},
       loading: true,
     };
   },

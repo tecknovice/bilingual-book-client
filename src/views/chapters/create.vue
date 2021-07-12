@@ -48,6 +48,7 @@ export default {
       const chapterResponse = await createChapter(this.form);
       const chapter = chapterResponse.data;
       const response = await addChapter(this.form.bookId, chapter._id);
+      this.$router.push(`/books/${this.form.bookId}`);
     },
     onCancel() {
       this.$message({
