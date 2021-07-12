@@ -1,39 +1,44 @@
 <template>
   <div class="app-container">
-    <el-table
-      v-loading="loading"
-      :data="chapter.paragraphs"
-      element-loading-text="Loading"
-      border
-      fit
-      highlight-current-row
+    <el-form
+      ref="form"
+      :model="chapter"
+      label-width="120px"
+      label-position="top"
     >
-      <el-table-column align="center" label="ID" width="95">
-        <template slot-scope="scope">
-          {{ scope.$index }}
-        </template>
-      </el-table-column>
-      <el-table-column label="content">
-        <template slot-scope="scope">
-          {{ scope.row.content }}
-        </template>
-      </el-table-column>
-      <el-table-column label="translated">
-        <template slot-scope="scope">
-          {{ scope.row.translated }}
-        </template>
-      </el-table-column>
-    </el-table>
+      <el-form-item label="Name">
+        <el-input v-model="chapter.name" />
+      </el-form-item>
+      <el-row :gutter="20">
+        <el-col :span="12">
+          <el-form-item label="Content">
+            <tinymce v-model="chapter.content" :height="400" />
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="Nội dung">
+            <tinymce v-model="chapter.translated" :height="400" />
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-form-item>
+        <el-button type="primary" @click="onSubmit">Update</el-button>
+        <el-button @click="onCancel">Cancel</el-button>
+      </el-form-item>
+    </el-form>
   </div>
 </template>
 
 <script>
-import { getChapter } from '@/api/chapter';
+import Tinymce from '@/components/Tinymce';
+import { addChapter } from '@/api/book';
+import { getChapter, updateChapter } from '@/api/chapter';
 
 export default {
+  components: { Tinymce },
   data() {
     return {
-      chapter: null,
+      chapter: {},
       loading: true,
     };
   },
@@ -48,6 +53,14 @@ export default {
         this.chapter = response.data;
         this.loading = false;
       });
+    },
+    async onSubmit() {
+      await updateChapter(this.chapter);
+      this.$router.push(`/books/${this.chapter.book}`);
+    },
+    async onCancel() {
+      const response = await getChapter(this.chapter._id);
+      this.chapter = response.data;
     },
   },
 };

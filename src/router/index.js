@@ -94,14 +94,8 @@ export const constantRoutes = [
     hidden: true,
     children: [
       {
-        path: 'index',
-        name: 'ListChapters',
-        component: () => import('@/views/chapters/index'),
-        meta: { title: 'List chapters', icon: 'table' },
-      },
-      {
         path: 'create/:bookId',
-        name: 'CreateChapter',
+        name: 'Create chapter',
         component: () => import('@/views/chapters/create'),
         meta: { title: 'Create chapter', icon: 'form' },
       },

@@ -56,16 +56,16 @@ export default {
     this.fetchData();
   },
   methods: {
-    fetchData() {
+    async fetchData() {
       this.listLoading = true;
-      getList().then(response => {
-        this.list = response.data.items;
-        this.listLoading = false;
-      });
+      const response = await getList();
+      this.list = response.data.items;
+      this.listLoading = false;
     },
 
     async deleteBook(bookId) {
       const response = await deleteBook(bookId);
+      await this.fetchData();
     },
   },
 };

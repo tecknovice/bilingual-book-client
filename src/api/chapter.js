@@ -22,3 +22,18 @@ export function createChapter(data) {
     data,
   });
 }
+
+export function updateChapter(data) {
+  return request({
+    url: `/chapter/${data._id}`,
+    method: 'patch',
+    data,
+  });
+}
+
+export function deleteChapter(id) {
+  return request({
+    url: `/chapter/${id}`,
+    method: 'delete',
+  });
+}

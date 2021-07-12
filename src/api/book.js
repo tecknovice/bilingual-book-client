@@ -32,6 +32,14 @@ export function createBook(data) {
   });
 }
 
+export function updateBook(data) {
+  return request({
+    url: `/book/${data._id}`,
+    method: 'patch',
+    data,
+  });
+}
+
 export function deleteBook(id) {
   return request({
     url: `/book/${id}`,

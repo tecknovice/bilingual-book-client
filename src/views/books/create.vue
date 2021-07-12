@@ -25,8 +25,6 @@ export default {
   methods: {
     async onSubmit() {
       const res = await createBook(this.form);
-      console.log('res', res);
-      // this.$message('submit!');
       this.$router.push('/books');
     },
     onCancel() {
