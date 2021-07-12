@@ -36,14 +36,14 @@
           {{ scope.row.name }}
         </template>
       </el-table-column>
-      <el-table-column label="Read" width="90">
+      <el-table-column label="Read" align="center" width="100">
         <template slot-scope="{ row }">
           <router-link :to="'/chapters/read/' + row._id" class="link-type">
             <el-button size="mini" type="primary">Read</el-button>
           </router-link>
         </template>
       </el-table-column>
-      <el-table-column label="Actions" width="200">
+      <el-table-column label="Actions" align="center" width="200">
         <template slot-scope="{ row }">
           <el-button size="mini" type="primary" @click="updateChapter(row._id)"
             >Update</el-button

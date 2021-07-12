@@ -20,9 +20,9 @@
       </el-table-column>
       <el-table-column label="Actions" align="center" width="230">
         <template slot-scope="{ row }">
-          <router-link :to="'/books/' + row._id" class="link-type">
-            <el-button size="mini" type="primary">Open</el-button>
-          </router-link>
+          <el-button size="mini" type="primary" @click="openBook(row._id)">
+            Open
+          </el-button>
           <el-button size="mini" type="danger" @click="deleteBook(row._id)">
             Delete
           </el-button>
@@ -62,7 +62,9 @@ export default {
       this.list = response.data.items;
       this.listLoading = false;
     },
-
+    openBook(bookId) {
+      this.$router.push('/books/' + bookId);
+    },
     async deleteBook(bookId) {
       const response = await deleteBook(bookId);
       await this.fetchData();
