@@ -13,28 +13,28 @@
 </template>
 
 <script>
-import { getList, createBook } from '@/api/book';
+import { createBook } from '@/api/book'
 export default {
   data() {
     return {
       form: {
-        name: '',
-      },
-    };
+        name: ''
+      }
+    }
   },
   methods: {
     async onSubmit() {
-      const res = await createBook(this.form);
-      this.$router.push('/books');
+      await createBook(this.form)
+      this.$router.push('/books')
     },
     onCancel() {
       this.$message({
         message: 'cancel!',
-        type: 'warning',
-      });
-    },
-  },
-};
+        type: 'warning'
+      })
+    }
+  }
+}
 </script>
 
 <style scoped>

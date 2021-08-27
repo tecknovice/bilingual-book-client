@@ -25,9 +25,9 @@
 </template>
 
 <script>
-import Tinymce from '@/components/Tinymce';
-import { addChapter } from '@/api/book';
-import { createChapter } from '@/api/chapter';
+import Tinymce from '@/components/Tinymce'
+import { addChapter } from '@/api/book'
+import { createChapter } from '@/api/chapter'
 export default {
   components: { Tinymce },
   data() {
@@ -36,28 +36,28 @@ export default {
         bookId: '',
         name: '',
         content: '',
-        translated: '',
-      },
-    };
+        translated: ''
+      }
+    }
   },
   created() {
-    this.form.bookId = this.$route.params && this.$route.params.bookId;
+    this.form.bookId = this.$route.params && this.$route.params.bookId
   },
   methods: {
     async onSubmit() {
-      const chapterResponse = await createChapter(this.form);
-      const chapter = chapterResponse.data;
-      const response = await addChapter(this.form.bookId, chapter._id);
-      this.$router.push(`/books/${this.form.bookId}`);
+      const chapterResponse = await createChapter(this.form)
+      const chapter = chapterResponse.data
+      await addChapter(this.form.bookId, chapter._id)
+      this.$router.push(`/books/${this.form.bookId}`)
     },
     onCancel() {
       this.$message({
         message: 'cancel!',
-        type: 'warning',
-      });
-    },
-  },
-};
+        type: 'warning'
+      })
+    }
+  }
+}
 </script>
 
 <style scoped>

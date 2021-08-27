@@ -12,8 +12,8 @@
 
     <el-button
       type="primary"
-      @click="createChapter"
       style="margin-bottom: 20px;"
+      @click="createChapter"
     >
       Create chapters
     </el-button>
@@ -45,9 +45,11 @@
       </el-table-column>
       <el-table-column label="Actions" align="center" width="200">
         <template slot-scope="{ row }">
-          <el-button size="mini" type="primary" @click="updateChapter(row._id)"
-            >Update</el-button
-          >
+          <el-button
+            size="mini"
+            type="primary"
+            @click="updateChapter(row._id)"
+          >Update</el-button>
           <el-button size="mini" type="danger" @click="deleteChapter(row._id)">
             Delete
           </el-button>
@@ -58,57 +60,57 @@
 </template>
 
 <script>
-import { getBook, updateBook } from '@/api/book';
-import { deleteChapter } from '@/api/chapter';
+import { getBook, updateBook } from '@/api/book'
+import { deleteChapter } from '@/api/chapter'
 export default {
   filters: {
     statusFilter(status) {
       const statusMap = {
         published: 'success',
         draft: 'gray',
-        deleted: 'danger',
-      };
-      return statusMap[status];
-    },
+        deleted: 'danger'
+      }
+      return statusMap[status]
+    }
   },
   data() {
     return {
       book: {},
       loading: true,
-      id: 0,
-    };
+      id: 0
+    }
   },
   created() {
-    this.id = this.$route.params && this.$route.params.id;
-    this.fetchData(this.id);
+    this.id = this.$route.params && this.$route.params.id
+    this.fetchData(this.id)
   },
   methods: {
     async onSubmit() {
-      await updateBook(this.book);
+      await updateBook(this.book)
     },
     async onCancel() {
-      const response = await getBook(this.id);
-      this.book = response.data;
+      const response = await getBook(this.id)
+      this.book = response.data
     },
     async fetchData(id) {
-      this.loading = true;
-      const response = await getBook(id);
-      this.book = response.data;
-      this.loading = false;
+      this.loading = true
+      const response = await getBook(id)
+      this.book = response.data
+      this.loading = false
     },
     createChapter() {
-      this.$router.push('/chapters/create/' + this.id);
+      this.$router.push('/chapters/create/' + this.id)
     },
     updateChapter(chapterId) {
-      this.$router.push('/chapters/update/' + chapterId);
+      this.$router.push('/chapters/update/' + chapterId)
     },
     async deleteChapter(chapterId) {
       this.book.chapters = this.book.chapters.filter(
-        chapter => chapter._id !== chapterId,
-      );
-      await updateBook(this.book);
-      const response = await deleteChapter(chapterId);
-    },
-  },
-};
+        chapter => chapter._id !== chapterId
+      )
+      await updateBook(this.book)
+      await deleteChapter(chapterId)
+    }
+  }
+}
 </script>

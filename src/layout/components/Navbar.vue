@@ -25,7 +25,7 @@
                 : 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80'
             "
             class="user-avatar"
-          />
+          >
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
@@ -56,36 +56,36 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import Breadcrumb from '@/components/Breadcrumb';
-import Hamburger from '@/components/Hamburger';
+import { mapGetters } from 'vuex'
+import Breadcrumb from '@/components/Breadcrumb'
+import Hamburger from '@/components/Hamburger'
 
 export default {
-  data() {
-    return {
-      bilingualMode: this.$store.state.app.bilingualMode,
-    };
-  },
   components: {
     Breadcrumb,
-    Hamburger,
+    Hamburger
+  },
+  data() {
+    return {
+      bilingualMode: this.$store.state.app.bilingualMode
+    }
   },
   computed: {
-    ...mapGetters(['sidebar', 'avatar']),
+    ...mapGetters(['sidebar', 'avatar'])
   },
   methods: {
     toggleSideBar() {
-      this.$store.dispatch('app/toggleSideBar');
+      this.$store.dispatch('app/toggleSideBar')
     },
     changeMode(val) {
-      this.$store.dispatch('app/toggleBilingualMode', val);
+      this.$store.dispatch('app/toggleBilingualMode', val)
     },
     async logout() {
-      await this.$store.dispatch('user/logout');
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`);
-    },
-  },
-};
+      await this.$store.dispatch('user/logout')
+      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

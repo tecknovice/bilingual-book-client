@@ -30,38 +30,37 @@
 </template>
 
 <script>
-import Tinymce from '@/components/Tinymce';
-import { addChapter } from '@/api/book';
-import { getChapter, updateChapter } from '@/api/chapter';
+import Tinymce from '@/components/Tinymce'
+import { getChapter, updateChapter } from '@/api/chapter'
 
 export default {
   components: { Tinymce },
   data() {
     return {
       chapter: {},
-      loading: true,
-    };
+      loading: true
+    }
   },
   created() {
-    const id = this.$route.params && this.$route.params.id;
-    this.fetchData(id);
+    const id = this.$route.params && this.$route.params.id
+    this.fetchData(id)
   },
   methods: {
     fetchData(id) {
-      this.loading = true;
+      this.loading = true
       getChapter(id).then(response => {
-        this.chapter = response.data;
-        this.loading = false;
-      });
+        this.chapter = response.data
+        this.loading = false
+      })
     },
     async onSubmit() {
-      await updateChapter(this.chapter);
-      this.$router.push(`/books/${this.chapter.book}`);
+      await updateChapter(this.chapter)
+      this.$router.push(`/books/${this.chapter.book}`)
     },
     async onCancel() {
-      const response = await getChapter(this.chapter._id);
-      this.chapter = response.data;
-    },
-  },
-};
+      const response = await getChapter(this.chapter._id)
+      this.chapter = response.data
+    }
+  }
+}
 </script>

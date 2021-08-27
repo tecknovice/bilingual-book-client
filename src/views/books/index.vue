@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { getList, deleteBook } from '@/api/book';
+import { getList, deleteBook } from '@/api/book'
 
 export default {
   filters: {
@@ -41,36 +41,36 @@ export default {
       const statusMap = {
         published: 'success',
         draft: 'gray',
-        deleted: 'danger',
-      };
-      return statusMap[status];
-    },
+        deleted: 'danger'
+      }
+      return statusMap[status]
+    }
   },
   data() {
     return {
       list: null,
-      listLoading: true,
-    };
+      listLoading: true
+    }
   },
   created() {
-    this.fetchData();
+    this.fetchData()
   },
   methods: {
     async fetchData() {
-      this.listLoading = true;
-      const response = await getList();
-      this.list = response.data.items;
-      this.listLoading = false;
+      this.listLoading = true
+      const response = await getList()
+      this.list = response.data.items
+      this.listLoading = false
     },
     openBook(bookId) {
-      this.$router.push('/books/' + bookId);
+      this.$router.push('/books/' + bookId)
     },
     async deleteBook(bookId) {
-      const response = await deleteBook(bookId);
-      await this.fetchData();
-    },
-  },
-};
+      await deleteBook(bookId)
+      await this.fetchData()
+    }
+  }
+}
 </script>
 <style scoped>
 .cell {

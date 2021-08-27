@@ -1,48 +1,48 @@
-import request from '@/utils/request';
+import request from '@/utils/request'
 
 export function getList(params) {
   return request({
     url: '/book',
     method: 'get',
-    params,
-  });
+    params
+  })
 }
 
 export function getBook(id) {
   return request({
     url: `/book/${id}`,
-    method: 'get',
-  });
+    method: 'get'
+  })
 }
 
 export function addChapter(bookId, chapterId) {
-  const data = { bookId, chapterId };
+  const data = { bookId, chapterId }
   return request({
     url: `/book/chapter`,
     method: 'put',
-    data,
-  });
+    data
+  })
 }
 
 export function createBook(data) {
   return request({
     url: '/book',
     method: 'post',
-    data,
-  });
+    data
+  })
 }
 
 export function updateBook(data) {
   return request({
     url: `/book/${data._id}`,
     method: 'patch',
-    data,
-  });
+    data
+  })
 }
 
 export function deleteBook(id) {
   return request({
     url: `/book/${id}`,
-    method: 'delete',
-  });
+    method: 'delete'
+  })
 }

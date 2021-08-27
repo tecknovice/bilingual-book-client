@@ -4,6 +4,6 @@ const getters = {
   bilingualMode: state => state.app.bilingualMode,
   token: state => state.user.token,
   avatar: state => state.user.avatar,
-  name: state => state.user.name,
-};
-export default getters;
+  name: state => state.user.name
+}
+export default getters
