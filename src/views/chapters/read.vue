@@ -1,7 +1,9 @@
 <template>
   <div class="app-container">
     <el-row>
-      <h1 class="text-align-center">{{ book.name }}</h1>
+      <router-link v-if="previous !== null" :to="'/books/' + book._id">
+        <h1 class="text-align-center">{{ book.name }}</h1>
+      </router-link>
     </el-row>
     <el-row :gutter="20">
       <el-col :span="8">
@@ -32,10 +34,10 @@
     </el-row>
     <hr />
     <el-row :gutter="20">
-      <el-col :span="12">
+      <el-col :span="bilingualMode ? 12 : 24">
         <div v-html="chapter.content"></div>
       </el-col>
-      <el-col :span="12" v-show="false">
+      <el-col :span="12" v-if="bilingualMode">
         <div v-html="chapter.translated"></div>
       </el-col>
     </el-row>
@@ -51,7 +53,6 @@ export default {
       chapter: {},
       book: {},
       loading: true,
-      mode: 'bilingual',
     };
   },
   async created() {
@@ -59,6 +60,9 @@ export default {
     await this.fetchData(id);
   },
   computed: {
+    bilingualMode() {
+      return this.$store.state.app.bilingualMode;
+    },
     previous() {
       const chapters = this.book.chapters;
       if (!chapters) return null;

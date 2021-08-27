@@ -9,6 +9,13 @@
     <breadcrumb class="breadcrumb-container" />
 
     <div class="right-menu">
+      <div class="right-menu-item">
+        <el-switch
+          v-model="bilingualMode"
+          active-text="Bilingual"
+          @change="changeMode"
+        />
+      </div>
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
           <img
@@ -54,6 +61,11 @@ import Breadcrumb from '@/components/Breadcrumb';
 import Hamburger from '@/components/Hamburger';
 
 export default {
+  data() {
+    return {
+      bilingualMode: this.$store.state.app.bilingualMode,
+    };
+  },
   components: {
     Breadcrumb,
     Hamburger,
@@ -64,6 +76,9 @@ export default {
   methods: {
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar');
+    },
+    changeMode(val) {
+      this.$store.dispatch('app/toggleBilingualMode', val);
     },
     async logout() {
       await this.$store.dispatch('user/logout');
